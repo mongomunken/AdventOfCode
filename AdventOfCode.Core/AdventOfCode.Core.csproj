@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solver\Day1Part1Solver.cs" />
+    <Compile Include="Solver\Day1Part2Solver.cs" />
     <Compile Include="Solver\ISolver.cs" />
     <Compile Include="Year2016\Day1\Action\ActionParser.cs" />
     <Compile Include="Year2016\Day1\Action\IAction.cs" />
