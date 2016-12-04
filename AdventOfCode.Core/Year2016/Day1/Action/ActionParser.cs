@@ -3,13 +3,22 @@ using System.Collections.Generic;
 
 namespace AdventOfCode.Core.Year2016.Day1.Action
 {
+	[Flags]
+	public enum ActionParserFlags
+	{
+		None = 0, 
+		OneWalkActionPerStep = 1, 
+	}
+
 	public class ActionParser
 	{
 		private string input;
+		private ActionParserFlags flags;
 
-		public ActionParser(string input)
+		public ActionParser(string input, ActionParserFlags flags = ActionParserFlags.None)
 		{
 			this.input = input;
+			this.flags = flags;
 		}
 
 		public IEnumerable<IAction> GetActions()
@@ -33,7 +42,17 @@ namespace AdventOfCode.Core.Year2016.Day1.Action
 					throw new InvalidOperationException();
 				}
 
-				yield return new WalkAction(steps);
+				if(flags.HasFlag(ActionParserFlags.OneWalkActionPerStep))
+				{
+					for(int i = 0; i < steps; i++)
+					{
+						yield return new WalkAction(1);
+					}
+				}
+				else
+				{
+					yield return new WalkAction(steps);
+				}
 			}
 		}
 	}
